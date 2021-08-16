@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { getWeb3, getWallet } from './utils';
-import Header from './Header';
-import NewTransfer from './NewTransfer';
-import TransferList from './TransferList';
+import Header from './components/Header';
+import NewTransfer from './components/NewTransfer';
+import TransferList from './components/TransferList';
+import { Container, Row } from 'reactstrap';
+import './css/App.css';
 
 function App() {
   const [web3, setWeb3] = useState(undefined);
@@ -59,16 +61,26 @@ function App() {
     approvers.length === 0 ||
     typeof quorum === 'undefined'
   ) {
-    return <div>Loading...</div>;
+    return (
+      <div>Loading...You must have Metamask and switch to Kovan network</div>
+    );
   }
 
   return (
-    <div>
-      Multisig Dapp
-      <Header approvers={approvers} quorum={quorum} />
-      <NewTransfer createTransfer={createTransfer} />
-      <TransferList transfers={transfers} approveTransfer={approveTransfer} />
-    </div>
+    <Container className="App">
+      <div>
+        <Row>
+          <h1 className="title">Multisig Dapp</h1>
+        </Row>
+        <Row>
+          <Header approvers={approvers} quorum={quorum} />
+        </Row>
+        <Row>
+          <NewTransfer createTransfer={createTransfer} />
+        </Row>
+        <TransferList transfers={transfers} approveTransfer={approveTransfer} />
+      </div>
+    </Container>
   );
 }
 

@@ -1,10 +1,12 @@
 import React from 'react';
+import { Table, Button } from 'reactstrap';
 
 function TransferList({ transfers, approveTransfer, alreadyApproved }) {
   return (
     <div>
+      <br />
       <h2>Transfers</h2>
-      <table>
+      <Table striped>
         <thead>
           <tr>
             <th>Id</th>
@@ -21,19 +23,19 @@ function TransferList({ transfers, approveTransfer, alreadyApproved }) {
               <td>{transfer.amount}</td>
               <td>{transfer.to}</td>
               <td>
-                {transfer.approvals}
-                <button
+                {transfer.approvals} {'    '}
+                <Button
+                  color="primary"
                   onClick={() => approveTransfer(transfer.id)}
-                  //disabled={transfer.alreadyApproved}
                 >
                   Approve
-                </button>
+                </Button>
               </td>
               <td>{transfer.sent ? 'yes' : 'no'}</td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 }
