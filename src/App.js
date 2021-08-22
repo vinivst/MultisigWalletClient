@@ -62,7 +62,7 @@ function App() {
     typeof quorum === 'undefined'
   ) {
     return (
-      <div>Loading...You must have Metamask and switch to Kovan network</div>
+      <div>Loading...You must have Metamask and switch to Rinkeby network</div>
     );
   }
 
